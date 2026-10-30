@@ -1,55 +1,47 @@
-# openclash-config
+# OpenClash 配置模板
 
-OpenClash 订阅转换模板。需要配合自己的节点订阅生成 YAML。
+原有两个INI已同步替换为多地区组合与AI细分版，继续使用原地址即可。
 
-## OpenClash 自定义模板链接
+## 模板链接
 
-[打开 Cash-All-OpenClash.ini](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/refs/heads/main/Cash-All-OpenClash.ini)
+[Cash-All-OpenClash.ini](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/Cash-All-OpenClash.ini)
 
-```text
-https://raw.githubusercontent.com/yaoxingshiji/openclash-config/refs/heads/main/Cash-All-OpenClash.ini
-```
+旧地址 [Cash-All-Fixed.ini](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/Cash-All-Fixed.ini) 保持相同内容。
 
-Cash-All-Fixed.ini 已同步为相同内容。新文件名可避免转换后端继续读取旧模板缓存。
+## OpenClash 设置
 
-## 使用方法
+1. 配置订阅 → 编辑原来的节点订阅，保留自己的订阅地址。
+2. 开启在线订阅转换，模板选“自定义模板”，填入上面的INI链接。
+3. 保留原来可用的转换服务，保存并更新订阅。
+4. 启用生成的YAML，使用“规则”模式。
+5. 在“🚀 默认代理”中选择组合，相关业务默认跟随；也能给ChatGPT、YouTube等业务单独选组合。
 
-1. 在 OpenClash → 配置订阅中保留自己的节点订阅地址。
-2. 开启在线订阅转换，模板选“自定义模板”，填入上面的 INI 链接。
-3. 保留原来可用的订阅转换服务地址，保存并更新订阅。
-4. 启用生成的 YAML，使用“规则”模式；在代理面板确认出现“🚀 默认代理”和“🐟 漏网之鱼”。
-5. 在“🚀 默认代理”中选择节点或地区，各业务默认跟随它。空地区组为 REJECT，选择有节点的地区即可。
+这是订阅转换模板，应填在“自定义模板URL”栏；节点订阅栏继续使用自己的订阅地址。
 
-若更新后仍是其他模板，请提供订阅更新日志中转换失败或模板下载失败的提示，遮住订阅密钥。
+## 分组与修复
 
-## 本次兼容修复
+- 港台日新韩-自动：香港、台湾、日本、新加坡、韩国。
+- 台日新韩-自动：台湾、日本、新加坡、韩国。
+- 保留单地区、所有手动和所有自动节点池；自动测试周期180秒，延迟公差100毫秒。
+- ChatGPT、Copilot、Gemini、Claude单独分组，保留总AI、Meta AI、Perplexity及其他业务。
+- 国内直连、漏网流量默认代理；空地区组保留REJECT。
+- 保留YouTube先于Google、Bybit先于GitHub及精确域名边界；Copilot不使用整家云商ASN匹配。
+- 模板39条ruleset、41个策略组，兼容本次验证的64条规则集上限。
+- 四份新增AI列表位于rules/openclash-combined/；原有rules下的AI、MetaAI、Crypto、Check列表继续保留使用。
 
-旧修复版有 136 条 ruleset，原版有 33 条。已在官方 subconverter v0.9.0 中复现：当后端将规则集上限设为 64 或 128 时，136 条模板会加载失败并静默保留后端默认分组，仍可能提示生成成功。这会产生“更新后变成其他模板”的现象；尚未取得用户实际转换后端，不能据此认定现场唯一原因。
+## 验证（2026-10-30）
 
-本次把 AI、Meta AI、Bybit/TRON、检测域名整理为本仓库的四份 `rules/*.list`，模板降至 **35 条 ruleset**，保留原有修复和 35 个策略组。
-
-## 保留的分流修复
-
-- Bybit 使用兼容的 DOMAIN / DOMAIN-SUFFIX 格式，精确域名不扩展到子域，优先于 GitHub。
-- YouTube 页面、视频、API 优先于 Google 广义规则。
-- AI 不再匹配整个 x.com、bing.com、googleapis.com、gstatic.com 及公共鉴权、支付和统计域名。
-- 业务默认代理；国内直连；未匹配流量由独立漏网组承接。
-- 地区筛选忽略大小写，“其他”是六个地区名称条件的补集。
-- 空地区组保留 REJECT，避免转换器自动补 DIRECT。
-
-## 验证记录（2026-10-30）
-
-- 本地 subconverter v0.9.0：64／128 条上限 × 完整地区／仅香港节点，共四个场景均保留正确分组，没有后端默认模板回退；使用本地规则来源快照隔离网络变化。
-- 四个场景均生成 35 个策略组、42,411 条规则，Mihomo v1.19.33 配置检查通过；每个场景的 14 个分流样例通过，空地区组仅有 REJECT。
-- 与旧修复版展开对比：策略组完全相同、规则集合相同；109,785 个域名首命中对照用例差异为零。
-- 464 项静态检查通过。条目减少会减少来源引用检查次数，不代表删除了分流规则。
-- 公共转换服务 api.asailor.org：真实读取已发布模板与四份列表，完整地区／仅香港场景均 HTTP 200，35 个分组、42,417 条规则，Mihomo 检查通过。四份列表共 105 条规则在生成结果中全部存在；本轮只使用 127.0.0.1:1 占位节点。
-- 公共后端比本地转换结果多出 6 条 IP-ASN，属于转换器支持类型的差异；不是规则遗漏。用户实际转换服务和路由器运行状态尚未验证。
-- INI SHA256：`35bd80ce7fb2f4ff241de120f3a8b03f0bcc5b48bf40439c5cc4b4ec57033588`
+- 本地subconverter v0.9.0：完整19个占位节点、仅香港、仅美国三种场景均正确生成41个组和42,455条规则，Mihomo v1.19.33配置检查通过，每场景31个分流与精确匹配用例通过。
+- 两个原INI和四份新增列表匿名Raw下载均HTTP 200，并与本地验证内容逐字节一致。
+- 公开转换服务api.asailor.org实际读取已替换的Cash-All-OpenClash.ini：8个占位节点，41组、42,461条规则；四份新列表的44个条目均出现在结果中，两个组合正确，Mihomo检查通过。
+- 所有测试只使用127.0.0.1:1占位节点，没有读取真实订阅或验证路由器、节点解锁能力。
 
 ## 使用边界
 
-- 地区依节点名称识别，测速不等于服务解锁；需要按实际出口选择。
-- 同时写有多个地区的节点名可能进入多个组，特殊命名可用“所有-手动”。
-- 规则来源在更新订阅时读取；四份自有列表及其他 27 个远程规则源需要转换后端能够访问。
-- 模板没有节点、账号或订阅密钥，不设置 OpenClash 的 DNS、IPv6、TUN。以上测试不能证明实际 DNS 不泄露或真实节点能解锁服务。
+- 地区按转换后的名称识别，未知名称可用所有-手动。Other采用明确地区白名单，不接管所有未知命名。
+- 模板请求保留原名；后端若强行传旧式emoji参数会去掉旗帜，纯旗帜节点可能丢失地区信息，应保留地区文字或调整后端参数。
+- LiveKit host/turn属于共享域名，不能按App完全区分；测速可用也不保证服务解锁。
+- 规则在更新订阅时由后端读取，实际路由器还需能访问相应资源。
+- 小火箭配置仍在[shadowrocket目录](./shadowrocket/README.md)，使用对应客户端的配置格式。
+
+原始分类来源：[liandu2024/Cash-All.ini](https://github.com/liandu2024/clash/blob/main/Cash-All.ini)。各规则来源保留在INI与自有列表中。
