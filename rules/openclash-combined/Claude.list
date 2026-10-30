@@ -1,0 +1,6 @@
+# OpenClash combined: Claude | 2026-10-30
+# Precise product domains; no provider-wide ASN rules.
+DOMAIN-SUFFIX,anthropic.com
+DOMAIN-SUFFIX,claude.ai
+DOMAIN-SUFFIX,claude.com
+DOMAIN-SUFFIX,claudeusercontent.com
