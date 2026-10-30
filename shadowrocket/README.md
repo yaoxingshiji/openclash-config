@@ -1,28 +1,46 @@
-# Shadowrocket 多地区组合配置
+# Shadowrocket 小火箭配置
 
-[下载 combined.conf](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/shadowrocket/combined.conf)
+**[📥 获取配置（Raw）](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/shadowrocket/combined.conf)** · **[备用链接（CDN）](https://cdn.jsdelivr.net/gh/yaoxingshiji/openclash-config@main/shadowrocket/combined.conf)** · [返回下载首页](../README.md)
 
-## 小火箭导入
+复制地址到小火箭「配置 → ＋」：
 
-1. 底部“配置” → 右上角“＋”。
-2. 粘贴上面的 Raw HTTPS 链接，点击下载。
-3. 点击下载的配置 → 使用配置。
-4. 首页全局路由选择“配置”。
-5. 在代理分组中，例如 ChatGPT → 台日新韩-自动，或 YouTube → 港台日新韩-自动。
+```text
+https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/shadowrocket/combined.conf
+```
 
-## 节点组合
+## 导入与更新
 
-- 港台日新韩-自动：香港、台湾、日本、新加坡、韩国。
-- 台日新韩-自动：台湾、日本、新加坡、韩国。
-- 使用小火箭已有节点，按名称筛选，自动测速选择；默认测试周期180秒、超时5秒。
-- 保留28个业务分类、11个节点组，以及已审查修复的ChatGPT/Claude依赖和Copilot ASN等规则。
+1. 保留自己的节点订阅；本配置不包含节点。
+2. 小火箭底部 **配置 → ＋ → 粘贴地址 → 下载**。
+3. 点击下载的文件 → **使用配置**；首页全局路由选 **配置**。
+4. 在代理分组中选择组合，例如 **ChatGPT → 台日新韩-自动**、**YouTube → 港台日新韩-自动**。
+5. 已导入过原链接：点该文件的 **更新配置**，再使用配置并检查分组选择。
 
-## 更新与范围
+如果 Raw 无法访问，复制顶部 CDN 链接；CDN 可能延迟同步。仅重新编译配置主要更新远程规则，不等于重新下载 GitHub 主配置。
 
-GitHub主配置改变后，在小火箭中点击该文件的“更新配置”。此操作会重新下载并覆盖配置；更新后检查各业务所选策略。仅“使用配置/编译配置”主要刷新规则集等外部资源，不等于重新下载GitHub主配置。
+## 本次同步（2026-10-30）
 
-Copilot过滤后的49条与Bybit16条为2026-10-30快照，需维护主配置才能更新；其余36个公开规则文件保持远程引用。自动测速不保证服务解锁；尚未在用户iPhone或真实节点上实测。
+- 39 个策略组：28 个业务组、11 个节点池。保留 Google、YouTube 和细分 AI。
+- 所有业务组选项排列一致，DIRECT 最左；国内默认 DIRECT，其余默认所有-手动，已保存选择可能继续保留。
+- 删除检测组，检测网站归国外；增加漏网之鱼，明确国内域名及中国 GeoIP 走国内，其余未匹配流量交给漏网之鱼。
+- 10 个自动组统一 HTTPS 测速，间隔 180 秒、超时 5 秒、公差 100ms；所有节点池过滤流量、到期等通知名称。
+- 同步 OpenClash 精简后的 ChatGPT、Copilot、Gemini、Claude、AI、Meta AI 规则，减少 Google 资源、普通 Bing 和共享服务误入 AI。
+- 流媒体优先于品牌与公共服务规则；保留 Apple、Global 的小火箭域名补充表，以及 Bybit 精确域名边界。
 
-[小火箭操作参考](https://github.com/LOWERTOP/Shadowrocket#配置文件)
+## 节点与验证范围
 
-原始模板来自[liandu2024/Cash-All.ini](https://github.com/liandu2024/clash/blob/main/Cash-All.ini)，各规则来源保留在配置注释和远程URL中。
+| 节点池 | 范围 |
+| --- | --- |
+| 港台日新韩-自动 | 香港、台湾、日本、新加坡、韩国 |
+| 台日新韩-自动 | 台湾、日本、新加坡、韩国 |
+| 各单地区-自动 | 对应地区的节点 |
+| 所有-手动 / 所有-自动 | 已有节点，排除识别到的通知名称 |
+| 其他-自动 | 明确识别出的其他地区 |
+
+自动组直接筛选节点，不嵌套自动组。没有匹配节点时请改选有节点的组；按名称识别地区不等于验证实际出口。自动测速不保证服务解锁，也不能证明间歇超时已修好。
+
+已检查结构、分组引用、地区正则及关键域名的静态路由，并成功读取全部 37 个远程规则文件。尚未在用户 iPhone、真实节点或视频播放场景中验证。
+
+两端共用本仓库 `rules/` 下的精简规则；其余公开规则随远程文件更新。节点凭据、路由器设置及手机当前选择不在此配置发布操作中修改。
+
+[小火箭操作参考（社区维护）](https://github.com/LOWERTOP/Shadowrocket#配置文件) · [原始分类来源](https://github.com/liandu2024/clash/blob/main/Cash-All.ini)

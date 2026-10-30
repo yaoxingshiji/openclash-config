@@ -1,55 +1,89 @@
-# OpenClash 配置模板
+# 小火箭 / OpenClash 配置
 
-原有两个INI已同步替换为多地区组合与AI细分版，继续使用原地址即可。
+按你使用的客户端选一行，直接获取配置链接。配置不包含节点，需要保留自己的节点订阅。
 
-## 模板链接
+## 📥 获取链接
 
-[Cash-All-OpenClash.ini](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/Cash-All-OpenClash.ini)
+| 使用设备 | 下载内容 | 主链接 | 备用链接 |
+| --- | --- | --- | --- |
+| **iPhone / iPad · Shadowrocket 小火箭** | 可直接导入的 `.conf` 配置 | **[获取小火箭配置](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/shadowrocket/combined.conf)** | [CDN 备用](https://cdn.jsdelivr.net/gh/yaoxingshiji/openclash-config@main/shadowrocket/combined.conf) |
+| **路由器 · OpenClash** | 订阅转换用的 `.ini` 模板 | **[获取 OpenClash 模板](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/Cash-All-OpenClash.ini)** | [CDN 备用](https://cdn.jsdelivr.net/gh/yaoxingshiji/openclash-config@main/Cash-All-OpenClash.ini) |
 
-旧地址 [Cash-All-Fixed.ini](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/Cash-All-Fixed.ini) 保持相同内容。
+链接打不开时使用同一行的 CDN 备用。也可以复制下面代码框里的完整地址。
 
-## OpenClash 设置
+### 小火箭：复制到「配置 → ＋」
 
-1. 配置订阅 → 编辑原来的节点订阅，保留自己的订阅地址。
-2. 开启在线订阅转换，模板选“自定义模板”，填入上面的INI链接。
-3. 保留原来可用的转换服务，保存并更新订阅。
-4. 启用生成的YAML，使用“规则”模式。
-5. 给ChatGPT、Google、YouTube等业务独立选择组合。DIRECT统一排最左；无历史选择时首项DIRECT生效，需要代理的业务请重新选节点组。
-6. 如果转换服务仍返回旧分组，使用[本次刷新链接](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/refs/heads/main/Cash-All-OpenClash.ini?v=2cbbdc0b0598)后再更新订阅。
+```text
+https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/shadowrocket/combined.conf
+```
 
-这是订阅转换模板，应填在“自定义模板URL”栏；节点订阅栏继续使用自己的订阅地址。
+下载后选择 **使用配置**，首页的 **全局路由** 选择 **配置**。已有此配置时，点它的 **更新配置**，再使用配置。
 
-## 分组与修复
+在代理分组中选择节点组合，例如「ChatGPT → 台日新韩-自动」「YouTube → 港台日新韩-自动」。
 
-- 港台日新韩-自动：香港、台湾、日本、新加坡、韩国。
-- 台日新韩-自动：台湾、日本、新加坡、韩国。
-- 保留单地区、所有手动和所有自动节点池；自动测试周期180秒，延迟公差100毫秒。
-- ChatGPT、Copilot、Gemini、Claude单独分组，保留总AI、Meta AI、Perplexity及其他业务。
-- 已删除“默认代理”和“检测”组，专用检测网站归入国外；保留Google组，Gemini及YouTube各自分流。
-- 28个业务组使用相同选项和顺序，DIRECT第一；无历史选择时为直连，国外、漏网之鱼及需要代理的业务必须选好节点。空地区组保留REJECT。
-- 保留YouTube先于Google、Bybit先于GitHub及精确域名边界；Copilot不使用整家云商ASN匹配。
-- 模板39条ruleset、39个策略组，兼容本次验证的64条规则集上限。
-- 四份新增AI列表位于rules/openclash-combined/；原有rules下的AI、MetaAI、Crypto、Check列表继续保留使用。
+**[查看小火箭完整说明 →](./shadowrocket/README.md)**
 
-## 验证（2026-10-30）
+### OpenClash：复制到「自定义模板 URL」
 
-- 本地subconverter v0.9.0：完整19个占位节点、仅香港、仅美国三种场景均正确生成39个组和42,456条规则，Mihomo v1.19.33配置检查通过，每场景33个分流与精确匹配用例通过。
-- GitHub原INI及别名同步更新；通过GitHub连接器回读Raw内容与本地逐字一致。
-- 公开转换遇到缓存，换用等价Raw路径和刷新参数后已验证最新内容：api.asailor.org使用8个占位节点生成39组、42,462条规则，四份细分AI表的45个条目全部存在，Mihomo检查通过。具体缓存层未确定。
-- 所有测试只使用127.0.0.1:1占位节点，没有读取真实订阅或验证路由器、节点解锁能力。
+```text
+https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/Cash-All-OpenClash.ini
+```
 
-## ChatGPT转圈排查
+进入 **配置订阅 → 编辑订阅 → 在线订阅转换 → 自定义模板**，填入上面地址，然后更新订阅并使用生成的 YAML。
 
-已根据[OpenAI网络说明](https://help.openai.com/en/articles/9247338-network-recommendations-for-chatgpt-errors-on-web-and-apps)补上精确资源域名cdn.openaimerge.com。这是覆盖缺口，不代表已定位真实超时原因。
+**节点订阅地址栏继续填写自己的订阅。** 这个 INI 是转换模板，不能作为 YAML 直接启用。原来的 [Cash-All-Fixed.ini](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/Cash-All-Fixed.ini) 地址也继续可用，内容相同。
 
-台日新韩自动组只测试gstatic网络连通性，不能保证ChatGPT可用。先将ChatGPT、国外、漏网之鱼都选“所有-手动”，在“所有-手动”固定同一个具体节点，再完全关闭并重开ChatGPT；仍超时则检查连接面板中chatgpt.com、auth.openai.com的实际节点和错误。
+## 🧭 分组怎么选
 
-## 使用边界
+| 分组 | 节点范围 |
+| --- | --- |
+| 港台日新韩-自动 | 香港、台湾、日本、新加坡、韩国 |
+| 台日新韩-自动 | 台湾、日本、新加坡、韩国 |
+| 香港 / 台湾 / 日本 / 新加坡 / 韩国 / 美国-自动 | 对应单个地区 |
+| 所有-手动 | 自己固定一条节点 |
+| 所有-自动 | 自动测速选择节点 |
+| 其他-自动 | 明确识别出的其他地区；未知名称请用所有-手动 |
 
-- 地区按转换后的名称识别，未知名称可用所有-手动。Other采用明确地区白名单，不接管所有未知命名。
-- 模板请求保留原名；后端若强行传旧式emoji参数会去掉旗帜，纯旗帜节点可能丢失地区信息，应保留地区文字或调整后端参数。
-- LiveKit host/turn属于共享域名，不能按App完全区分；测速可用也不保证服务解锁。
-- 规则在更新订阅时由后端读取，实际路由器还需能访问相应资源。
-- 小火箭配置仍在[shadowrocket目录](./shadowrocket/README.md)，使用对应客户端的配置格式。
+- 39 个策略组：28 个业务组、11 个节点池。保留 Google、YouTube 及 ChatGPT / Copilot / Gemini / Claude 独立分组。
+- DIRECT 统一在最左侧，业务组选项顺序一致；已去掉默认代理和检测组，检测网站归入国外。
+- YouTube 等流媒体先匹配，AI 使用精简名单，减少 Google 资源和公共网站被误分。
+- 自动测速使用 HTTPS，间隔 180 秒、公差 100ms。它检查连通性，不能保证所有网站或流媒体都可用。
 
-原始分类来源：[liandu2024/Cash-All.ini](https://github.com/liandu2024/clash/blob/main/Cash-All.ini)。各规则来源保留在INI与自有列表中。
+**更新后检查选择：** 小火箭的国内组初始选 DIRECT，其余初始选所有-手动；已保存的选择可能被保留。OpenClash 没有历史选择时首项 DIRECT 生效，需为 Google、YouTube、ChatGPT、国外、漏网之鱼等选好代理。
+
+## ❓ 常见问题
+
+<details>
+<summary><strong>Raw 打不开，或更新后还是旧内容</strong></summary>
+
+使用顶部表格同一行的 CDN 备用链接。CDN 可能有缓存，刚发布后更新可能延迟。
+
+小火箭需要点 **更新配置** 重新下载主文件，仅重新编译主要刷新远程规则。OpenClash 需要更新订阅，才能重新转换模板；转换服务也可能缓存旧内容。
+
+更新后，小火箭应有「漏网之鱼」分组，且不再有「检测」分组；自动组的测速地址应为 `https://www.gstatic.com/generate_204`。
+
+</details>
+
+<details>
+<summary><strong>Google / YouTube / ChatGPT 转圈或超时</strong></summary>
+
+先查看该业务组实际选中的节点。两个业务组如果都选同一个自动组，会共享该自动组当前选中的节点。
+
+可临时固定一条具体节点进行对比；测速有延迟数字不代表实际网站持续可用。OpenClash 的「覆写设置」能覆盖模板里的测速地址、间隔等参数，也需核对实际值。
+
+不要仅凭转圈就判断分流规则、DNS 或 IPv6 一定有问题；超时发生时的实际节点和连接日志才是定位依据。
+
+</details>
+
+<details>
+<summary><strong>验证范围、来源与使用边界</strong></summary>
+
+- 小火箭同步版：已核对分组引用、规则顺序、地区筛选及关键域名的静态分流；37 个远程规则文件已读取验证。没有进行用户 iPhone 实机导入、真实节点或视频播放测试。
+- OpenClash：此前使用 subconverter v0.9.0 与 Mihomo v1.19.33，通过本地及公开转换服务验证占位节点配置；这不代表真实节点可用或服务解锁。
+- 地区依节点名称识别，混合中转名称可能有歧义。小火箭空地区组需自行改选有节点的组；OpenClash 模板为空组保留 REJECT。
+- 两端共享本仓库精简 AI 规则；Apple / Global 保留小火箭格式所需的域名补充表。远程规则可能随上游更新。
+- LiveKit 的部分 host / turn 域名属于共享服务，不能仅凭域名完全区分应用。
+
+原始分类：[liandu2024/Cash-All.ini](https://github.com/liandu2024/clash/blob/main/Cash-All.ini)。规则来源：[blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)、[ACL4SSR](https://github.com/ACL4SSR/ACL4SSR)、[v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)。具体引用保留在配置内。
+
+</details>
