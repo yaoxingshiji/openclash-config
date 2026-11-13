@@ -7,7 +7,7 @@
 | 使用设备 | 下载内容 | 主链接 | 备用链接 |
 | --- | --- | --- | --- |
 | **iPhone / iPad · Shadowrocket 小火箭** | 可直接导入的 `.conf` 配置 | **[获取小火箭配置](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/shadowrocket/combined.conf)** | [CDN 备用](https://cdn.jsdelivr.net/gh/yaoxingshiji/openclash-config@main/shadowrocket/combined.conf) |
-| **路由器 · OpenClash** | 订阅转换用的 `.ini` 模板 | **[获取 OpenClash 模板](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/Cash-All-OpenClash.ini)** | [CDN 备用](https://cdn.jsdelivr.net/gh/yaoxingshiji/openclash-config@main/Cash-All-OpenClash.ini) |
+| **路由器 · OpenClash** | 订阅转换用的 `.ini` 模板 | **[获取 OpenClash 模板](https://raw.githubusercontent.com/yaoxingshiji/openclash-config/main/Cash-All-OpenClash.ini)** | [CDN 备用（固定版本）](https://cdn.jsdelivr.net/gh/yaoxingshiji/openclash-config@365b392be2a272ac614c5c809185d5fef7b322ec/Cash-All-OpenClash.ini) |
 
 链接打不开时使用同一行的 CDN 备用。也可以复制下面代码框里的完整地址。
 
